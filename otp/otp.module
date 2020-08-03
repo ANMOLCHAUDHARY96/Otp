@@ -1,0 +1,45 @@
+<?php
+function generatePIN($digits = 4){
+    $i = 0; //counter
+    $pin = ""; //our default pin is blank.
+    while($i < $digits){
+        //generate a random number between 0 and 9.
+        $pin .= mt_rand(0, 9);
+        $i++;
+
+    }
+    return $pin;
+
+}
+
+function otp_mail($key, &$message, $params) {
+ 	switch ($key) {
+	   	case 'cusmail':
+		   	$message['headers'] = array(
+		      'content-type' => 'text/html',
+		      'MIME-Version' => '1.0',
+		    );
+			$message['from'] = 'anmolchaudhary96@gmail.com';
+			Drupal::config('system.site')->get('mail');
+			$message['subject'] = t('Otp For Registration Form');
+			$message['body'][] = $params['message'];
+			break;
+ 	}
+}
+
+function get_details(){
+	if(\Drupal::database()->schema()->tableExists('app_otp')){
+		$query = \Drupal::database()->select('app_otp', 'ad');
+		$query->fields('ad', ['email_id']);
+		$query->orderBy('ad.changed', 'DESC');
+		$rows = $query->execute();
+		$result = $rows->fetchAll();
+		
+		return $result;
+		
+	}
+
+}
+
+ 
+?>

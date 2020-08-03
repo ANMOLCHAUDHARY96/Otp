@@ -1,0 +1,41 @@
+<?php
+/**
+ * Implementing hook_schema
+ */
+function otp_schema() { 
+  $schema['app_otp'] = array( 
+  	'fields' => array( 
+  		'id' => array( 
+  			'type' =>'serial', 
+  			'not null' => TRUE, 
+  		),
+      
+  		'email_id' => array( 
+  			'type' => 'varchar',
+        'description' => 'User Email',
+  			'length' => 255,
+  		),
+      
+      'otp_element' => array( 
+        'type' => 'varchar',
+        'description' => 'Otp',
+        'length' => 255,
+      ),
+      'store_otp' => array( 
+        'type' => 'varchar',
+        'description' => 'Store Otp',
+        'length' => 4,
+      ),
+      'changed' => array(
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+        'description' => 'Date of Submission',
+        'default' => 0,
+      ),
+  	), 
+  	'primary key' => array('id'),
+  );
+  
+  return $schema; 
+}

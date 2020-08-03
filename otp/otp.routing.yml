@@ -1,0 +1,25 @@
+# otp.content:
+#     path: '/otp'
+#     defaults:
+#         _controller: '\Drupal\otp\Controller\NewController::add'
+#         _title: 'Page regarding  otp'
+#     requirements:
+#         _permission: 'access content'
+
+otp.receiveform:
+    path: '/otp/add'
+    defaults:
+        _controller: '\Drupal\otp\Controller\NewController::add'
+        _form: '\Drupal\otp\Form\ReceiveForm'
+        _title: 'Enter otp'
+    requirements:
+        _permission: 'access content'
+
+otp.infoform:
+    path: '/register/form'
+    defaults:
+        _controller: '\Drupal\otp\Controller\NewController::register'
+        _form: '\Drupal\otp\Form\InfoForm'
+        _title: 'Fill Details'
+    requirements:
+        _permission: 'access content'        
